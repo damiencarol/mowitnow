@@ -85,6 +85,32 @@
 					</excludes>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<checkstyleRules>
+						<module name="Checker">
+							<module name="FileTabCharacter" />
+							<module name="RegexpSingleline" />
+							<module name="TreeWalker">
+								<module name="LineLength">
+									<property name="max" value="120" />
+								</module>
+							</module>
+						</module>
+					</checkstyleRules>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 </project>

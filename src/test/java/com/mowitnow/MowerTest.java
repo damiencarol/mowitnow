@@ -71,15 +71,69 @@ public class MowerTest {
 		assertFalse(ref.equals(null));
 		assertFalse(ref.equals(new Integer(1)));
 
-		assertNotEquals(new Mower(1, 5, null), ref);
+		assertNotEquals(new Mower(1, 3, null), ref);
 		assertNotEquals(new Mower(1, 5, Direction.NORTH), ref);
-		assertNotEquals(new Mower(2, 5, Direction.NORTH), ref);
+		assertNotEquals(new Mower(2, 3, Direction.NORTH), ref);
 		assertNotEquals(new Mower(1, 5, Direction.EAST), ref);
+
+		ref.setDirection(null);
+		assertEquals(new Mower(1, 3, null), ref);
+		
+		ref.setX(55);
+		assertEquals(new Mower(55, 3, null), ref);
+		
+		ref.setY(45);
+		assertEquals(new Mower(55, 45, null), ref);
+		
+		assertNotEquals(new Mower(2, 5, null), ref);
 	}
 
 	@Test
 	public void Object_hashCode() {
-		assertEquals(new Mower(1, 3, Direction.NORTH).hashCode(), new Mower(1, 3, Direction.NORTH).hashCode());
+		Mower ref = new Mower(1, 3, Direction.NORTH);
+		assertEquals(new Mower(1, 3, Direction.NORTH).hashCode(), ref.hashCode());
+
+		ref.setDirection(null);
+		assertNotEquals(new Mower(2, 5, null).hashCode(), ref.hashCode());
+	}
+
+	@Test
+	public void assess() {
+		Mower ref = new Mower(1, 3, Direction.NORTH);
+		assertEquals(1, ref.getX());
+		assertEquals(3, ref.getY());
+	}
+
+	/**
+	 * We make one square.
+	 */
+	@Test
+	public void oneTurn() {
+		Mower ref = new Mower(1, 1, Direction.NORTH);
+		for (int i = 0; i < 4; i++) {
+			ref.moveForward(6, 6);
+			ref.moveClockwise();
+		}
+		assertEquals(1, ref.getX());
+		assertEquals(1, ref.getY());
+		assertEquals(Direction.NORTH, ref.getDirection());
+	}
+
+	/**
+	 * We make one square.
+	 */
+	@Test
+	public void outAndBack() {
+		Mower ref = new Mower(1, 1, Direction.NORTH);
+		for (int i = 0; i < 2; i++) {
+			ref.moveForward(6, 6);
+			ref.moveForward(6, 6);
+			ref.moveClockwise();
+			ref.moveClockwise();
+		}
+		assertEquals(1, ref.getX());
+		assertEquals(1, ref.getY());
+		assertEquals(Direction.NORTH, ref.getDirection());
 	}
 
 	@Test

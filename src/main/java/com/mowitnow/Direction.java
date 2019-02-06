@@ -19,50 +19,50 @@
 package com.mowitnow;
 
 public enum Direction {
-	NORTH('N'), EAST('E'), SOUTH('S'), WEST('W');
+  NORTH('N'), EAST('E'), SOUTH('S'), WEST('W');
 
-	private final char inner;
-	private Direction clockwise;
-	private Direction anticlockwise;
+  private final char inner;
+  private Direction clockwise;
+  private Direction anticlockwise;
 
-	static {
-		NORTH.clockwise = EAST;
-		EAST.clockwise = SOUTH;
-		SOUTH.clockwise = WEST;
-		WEST.clockwise = NORTH;
-		NORTH.anticlockwise = WEST;
-		EAST.anticlockwise = NORTH;
-		SOUTH.anticlockwise = EAST;
-		WEST.anticlockwise = SOUTH;
-	}
+  static {
+    NORTH.clockwise = EAST;
+    EAST.clockwise = SOUTH;
+    SOUTH.clockwise = WEST;
+    WEST.clockwise = NORTH;
+    NORTH.anticlockwise = WEST;
+    EAST.anticlockwise = NORTH;
+    SOUTH.anticlockwise = EAST;
+    WEST.anticlockwise = SOUTH;
+  }
 
-	Direction(final char val) {
-		inner = val;
-	}
+  Direction(final char val) {
+    inner = val;
+  }
 
-	public String toString() {
-		return String.valueOf(inner);
-	}
+  public String toString() {
+    return String.valueOf(inner);
+  }
 
-	public static Direction parse(char val) {
-		for (Direction d : Direction.values()) {
-			if (val == d.inner) {
-				return d;
-			}
-		}
-		String msg = String.format("Unable to parse '%s' for enum %s", val, Direction.class);
-		throw new RuntimeException(msg);
-	}
+  public static Direction parse(char val) {
+    for (Direction d : Direction.values()) {
+      if (val == d.inner) {
+        return d;
+      }
+    }
+    String msg = String.format("Unable to parse '%s' for enum %s", val, Direction.class);
+    throw new RuntimeException(msg);
+  }
 
-	public static Direction parse(String val) {
-		return parse(val.toUpperCase().charAt(0));
-	}
+  public static Direction parse(String val) {
+    return parse(val.toUpperCase().charAt(0));
+  }
 
-	public Direction getClockwise() {
-		return clockwise;
-	}
+  public Direction getClockwise() {
+    return clockwise;
+  }
 
-	public Direction getAnticlockwise() {
-		return anticlockwise;
-	}
+  public Direction getAnticlockwise() {
+    return anticlockwise;
+  }
 }

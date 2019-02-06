@@ -19,48 +19,71 @@
 package com.mowitnow;
 
 public enum Order {
-	GAUCHE('G') {
-		@Override
-		public void animate(Mower mower, int n, int m) {
-			mower.moveAnticlockwise();
-		}
-	},
-	DROITE('D') {
-		@Override
-		public void animate(Mower mower, int n, int m) {
-			mower.moveClockwise();
-		}
-	},
-	AVANCE('A') {
-		@Override
-		public void animate(Mower mower, int n, int m) {
-			mower.moveForward(n, m);
-		}
-	};
+  GAUCHE('G') {
+    @Override
+    public void animate(Mower mower, int n, int m) {
+      mower.moveAnticlockwise();
+    }
+  },
+  DROITE('D') {
+    @Override
+    public void animate(Mower mower, int n, int m) {
+      mower.moveClockwise();
+    }
+  },
+  AVANCE('A') {
+    @Override
+    public void animate(Mower mower, int n, int m) {
+      mower.moveForward(n, m);
+    }
+  };
 
-	private final char inner;
+  private final char inner;
 
-	Order(final char val) {
-		inner = val;
-	}
+  Order(final char val) {
+    inner = val;
+  }
 
-	public String toString() {
-		return String.valueOf(inner);
-	}
+  public String toString() {
+    return String.valueOf(inner);
+  }
 
-	public static Order parse(char val) {
-		for (Order d : Order.values()) {
-			if (val == d.inner) {
-				return d;
-			}
-		}
-		String msg = String.format("Unable to parse '%s' for enum %s", val, Order.class);
-		throw new RuntimeException(msg);
-	}
+  /**
+   * Parses the character argument as an order.
+   *
+   * @param val a {@code char} containing the {@code Order} representation to be
+   *            parsed
+   * @return the order value represented by the argument.
+   * @exception RuntimeException if the char is not a parsable order.
+   */
+  public static Order parse(final char val) {
+    for (Order d : Order.values()) {
+      if (val == d.inner) {
+        return d;
+      }
+    }
+    String msg = String.format("Unable to parse '%s' for enum %s", val, Order.class);
+    throw new RuntimeException(msg);
+  }
 
-	public static Order parse(String val) {
-		return parse(val.toUpperCase().charAt(0));
-	}
+  /**
+   * Parses the string argument as an order.
+   *
+   * @param val a {@code String} containing the {@code Order} representation to be
+   *            parsed
+   * @return the order value represented by the argument.
+   * @exception RuntimeException if the string does not contain a parsable order.
+   */
+  public static Order parse(final String val) {
+    return parse(val.toUpperCase().charAt(0));
+  }
 
-	abstract void animate(Mower mower, int n, int m);
+  /**
+   * Mode a {@code Mower} according to an order.
+   * 
+   * @param mower Mower to move
+   * @param n     Weight size of the area
+   * @param m     Height size of the area
+   */
+  abstract void animate(Mower mower, int n, int m);
 }
