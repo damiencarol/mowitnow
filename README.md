@@ -1,4 +1,8 @@
-# Deplacement d'une tondeuse
+# MowItNow - test project
+
+[![Build Status](https://travis-ci.org/damiencarol/mowitnow.svg?branch=master)](https://travis-ci.org/damiencarol/mowitnow)
+
+## About
 
 La société MowItNow a décidé de développer une tondeuse à gazon automatique, destinée aux
 surfaces rectangulaires.
