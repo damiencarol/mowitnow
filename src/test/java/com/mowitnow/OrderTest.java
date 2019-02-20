@@ -19,6 +19,7 @@
 package com.mowitnow;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,23 +29,34 @@ import com.mowitnow.Order;
 
 @RunWith(JUnit4.class)
 public class OrderTest {
-    @Test
-    public void parse() {
-        assertEquals(Order.AVANCE, Order.parse('A'));
+  @Test
+  public void parse() throws OrderParseException {
+    assertEquals(Order.AVANCE, Order.parse('A'));
 
-        assertEquals(Order.AVANCE, Order.parse("A"));
-        assertEquals(Order.AVANCE, Order.parse("a"));
-        assertEquals(Order.AVANCE, Order.parse("avance"));
-        assertEquals(Order.AVANCE, Order.parse("avance bouricot!"));
-    }
+    assertEquals(Order.AVANCE, Order.parse("A"));
+    assertEquals(Order.AVANCE, Order.parse("a"));
+    assertEquals(Order.AVANCE, Order.parse("avance"));
+    assertEquals(Order.AVANCE, Order.parse("avance bouricot!"));
+  }
 
-    @Test
-    public void Object_toString() {
-        assertEquals("A", Order.AVANCE.toString());
-    }
+  @Test
+  public void Object_toString() {
+    assertEquals("A", Order.AVANCE.toString());
+  }
 
-    @Test(expected = Exception.class)
-    public void parseNot() {
-    	Order.parse("??????");
+  @Test(expected = OrderParseException.class)
+  public void parseNot() throws OrderParseException {
+    Order.parse("??????");
+  }
+
+  @Test
+  public void parseNotEmpty() throws OrderParseException {
+    try {
+      Order.parse("?");
+    } catch (OrderParseException exception) {
+      assertEquals('?', exception.getValue());
+      return;
     }
+    fail();
+  }
 }

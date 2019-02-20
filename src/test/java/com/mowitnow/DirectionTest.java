@@ -19,6 +19,7 @@
 package com.mowitnow;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,33 +30,44 @@ import com.mowitnow.Direction;
 @RunWith(JUnit4.class)
 public class DirectionTest {
 
-    @Test
-    public void getAnticlockwise() {
-        assertEquals(Direction.WEST, Direction.NORTH.getAnticlockwise());
-    }
+  @Test
+  public void getAnticlockwise() {
+    assertEquals(Direction.WEST, Direction.NORTH.getAnticlockwise());
+  }
 
-    @Test
-    public void getClockwise() {
-        assertEquals(Direction.EAST, Direction.NORTH.getClockwise());
-    }
+  @Test
+  public void getClockwise() {
+    assertEquals(Direction.EAST, Direction.NORTH.getClockwise());
+  }
 
-    @Test
-    public void parse() {
-    	assertEquals(Direction.NORTH, Direction.parse('N'));
+  @Test
+  public void parse() throws DirectionParseException {
+    assertEquals(Direction.NORTH, Direction.parse('N'));
 
-    	assertEquals(Direction.NORTH, Direction.parse("N"));
-    	assertEquals(Direction.NORTH, Direction.parse("n"));
-    	assertEquals(Direction.NORTH, Direction.parse("North"));
-    	assertEquals(Direction.NORTH, Direction.parse("NORTH"));
-    }
+    assertEquals(Direction.NORTH, Direction.parse("N"));
+    assertEquals(Direction.NORTH, Direction.parse("n"));
+    assertEquals(Direction.NORTH, Direction.parse("North"));
+    assertEquals(Direction.NORTH, Direction.parse("NORTH"));
+  }
 
-    @Test(expected = Exception.class)
-    public void parseNot() {
-    	Direction.parse("??????");
-    }
+  @Test(expected = DirectionParseException.class)
+  public void parseNot() throws DirectionParseException {
+    Direction.parse("??????");
+  }
 
-    @Test()
-    public void Object_toString() {
-    	assertEquals("N", Direction.NORTH.toString());
+  @Test
+  public void parseNotEmpty() throws DirectionParseException {
+    try {
+      Direction.parse("?");
+    } catch (DirectionParseException exception) {
+      assertEquals('?', exception.getValue());
+      return;
     }
+    fail();
+  }
+
+  @Test
+  public void Object_toString() {
+    assertEquals("N", Direction.NORTH.toString());
+  }
 }

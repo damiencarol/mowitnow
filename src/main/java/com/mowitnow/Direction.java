@@ -40,21 +40,21 @@ public enum Direction {
     inner = val;
   }
 
+  @Override
   public String toString() {
     return String.valueOf(inner);
   }
 
-  public static Direction parse(char val) {
+  public static Direction parse(char value) throws DirectionParseException {
     for (Direction d : Direction.values()) {
-      if (val == d.inner) {
+      if (value == d.inner) {
         return d;
       }
     }
-    String msg = String.format("Unable to parse '%s' for enum %s", val, Direction.class);
-    throw new RuntimeException(msg);
+    throw new DirectionParseException(value);
   }
 
-  public static Direction parse(String val) {
+  public static Direction parse(String val) throws DirectionParseException {
     return parse(val.toUpperCase().charAt(0));
   }
 

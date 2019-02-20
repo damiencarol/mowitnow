@@ -44,6 +44,7 @@ public enum Order {
     inner = val;
   }
 
+  @Override
   public String toString() {
     return String.valueOf(inner);
   }
@@ -54,16 +55,15 @@ public enum Order {
    * @param val a {@code char} containing the {@code Order} representation to be
    *            parsed
    * @return the order value represented by the argument.
-   * @exception RuntimeException if the char is not a parsable order.
+   * @throws OrderParseException if the char is not a parsable order.
    */
-  public static Order parse(final char val) {
+  public static Order parse(final char value) throws OrderParseException {
     for (Order d : Order.values()) {
-      if (val == d.inner) {
+      if (value == d.inner) {
         return d;
       }
     }
-    String msg = String.format("Unable to parse '%s' for enum %s", val, Order.class);
-    throw new RuntimeException(msg);
+    throw new OrderParseException(value);
   }
 
   /**
@@ -72,9 +72,9 @@ public enum Order {
    * @param val a {@code String} containing the {@code Order} representation to be
    *            parsed
    * @return the order value represented by the argument.
-   * @exception RuntimeException if the string does not contain a parsable order.
+   * @throws OrderParseException if the string does not contain a parsable order.
    */
-  public static Order parse(final String val) {
+  public static Order parse(final String val) throws OrderParseException {
     return parse(val.toUpperCase().charAt(0));
   }
 
