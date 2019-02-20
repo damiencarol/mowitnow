@@ -1,6 +1,10 @@
 sudo: false
 language: java
 install: mvn clean install -Dgpg.skip=true
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
 jdk:
   - oraclejdk7
   - oraclejdk8
