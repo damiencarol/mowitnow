@@ -1,0 +1,7 @@
+sudo: false
+language: java
+install: mvn clean install -Dgpg.skip=true
+jdk:
+  - oraclejdk7
+  - oraclejdk8
+  - openjdk7
