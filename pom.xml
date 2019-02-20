@@ -82,7 +82,27 @@
 				<configuration>
 					<excludes>
 						<exclude>README.md</exclude>
+						<exclude>.*</exclude>
 					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.11.0</version>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<rulesets>
+						<!-- A rule set, that comes bundled with PMD -->
+						<ruleset>/category/java/bestpractices.xml</ruleset>
+					</rulesets>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -107,6 +127,7 @@
 									<property name="max" value="120" />
 								</module>
 							</module>
+							<module name="NewlineAtEndOfFile" />
 						</module>
 					</checkstyleRules>
 				</configuration>
