@@ -52,8 +52,8 @@ public enum Order {
   /**
    * Parses the character argument as an order.
    *
-   * @param val a {@code char} containing the {@code Order} representation to be
-   *            parsed
+   * @param value a {@code char} containing the {@code Order} representation to be
+   *              parsed
    * @return the order value represented by the argument.
    * @throws OrderParseException if the char is not a parsable order.
    */
@@ -80,7 +80,7 @@ public enum Order {
 
   /**
    * Mode a {@code Mower} according to an order.
-   * 
+   *
    * @param mower Mower to move
    * @param n     Weight size of the area
    * @param m     Height size of the area

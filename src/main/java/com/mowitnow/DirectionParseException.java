@@ -37,7 +37,16 @@ public class DirectionParseException extends Exception {
   }
 
   /**
-   * @param value2 Token in error
+   * Constructs a <code>DirectionParseException</code> object with a given
+   * <code>cause</code>. The <code>value</code> is initialized to
+   * <code>null</code>. The <code>reason</code> is initialized to
+   * <code>null</code> if <code>cause==null</code> or to
+   * <code>cause.toString()</code> if <code>cause!=null</code>.
+   *
+   * @param cause the underlying reason for this
+   *              <code>DirectionParseException</code> (which is saved for later
+   *              retrieval by the <code>getCause()</code> method); may be null
+   *              indicating the cause is non-existent or unknown.
    */
   public DirectionParseException(Throwable cause) {
     super(cause);
@@ -52,7 +61,15 @@ public class DirectionParseException extends Exception {
   }
 
   /**
-   * @param value2 Token in error
+   * Constructs a <code>DirectionParseException</code> object with a given
+   * <code>reason</code> and <code>cause</code>. The value is initialized to
+   * <code>null</code>.
+   *
+   * @param reason a description of the exception.
+   * @param cause  the underlying reason for this <code>SQLException</code> (which
+   *               is saved for later retrieval by the <code>getCause()</code>
+   *               method); may be null indicating the cause is non-existent or
+   *               unknown.
    */
   public DirectionParseException(String reason, Throwable cause) {
     super(reason, cause);
