@@ -1,6 +1,7 @@
 # MowItNow - test project
 
 [![Build Status](https://travis-ci.org/damiencarol/mowitnow.svg?branch=master)](https://travis-ci.org/damiencarol/mowitnow)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/damiencarol/mowitnow.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/damiencarol/mowitnow/alerts/)
 
 ## About
 
