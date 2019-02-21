@@ -51,7 +51,8 @@ public enum Direction {
         return d;
       }
     }
-    throw new DirectionParseException(value);
+    String reason = String.format("Unable to parse '%s' for enum %s", value, Direction.class);
+    throw new DirectionParseException(reason, value);
   }
 
   public static Direction parse(String val) throws DirectionParseException {

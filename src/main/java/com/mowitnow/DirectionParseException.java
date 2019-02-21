@@ -20,7 +20,7 @@ package com.mowitnow;
 
 public class DirectionParseException extends Exception {
   private static final long serialVersionUID = 5814448575011531479L;
-  private final char value;
+  private char value;
 
   /**
    * @return the value of the error token
@@ -30,10 +30,40 @@ public class DirectionParseException extends Exception {
   }
 
   /**
+   * @param reason Message in error
+   */
+  public DirectionParseException(String reason) {
+    super(reason);
+  }
+
+  /**
    * @param value2 Token in error
    */
-  public DirectionParseException(char value2) {
-    super(String.format("Unable to parse '%s' for enum %s", value2, Direction.class));
+  public DirectionParseException(Throwable cause) {
+    super(cause);
+  }
+
+  /**
+   * @param value2 Token in error
+   */
+  public DirectionParseException(String reason, char value2) {
+    super(reason);
     this.value = value2;
   }
+
+  /**
+   * @param value2 Token in error
+   */
+  public DirectionParseException(String reason, Throwable cause) {
+    super(reason, cause);
+  }
+
+  /**
+   * @param value2 Token in error
+   */
+  public DirectionParseException(String reason, char value2, Throwable cause) {
+    super(reason, cause);
+    this.value = value2;
+  }
+
 }

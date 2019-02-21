@@ -43,13 +43,13 @@ bouge que lorsque la première a exécuté intégralement sa série d'instructio
 Lorsqu'une tondeuse achève une série d'instruction, elle communique sa position et son
 orientation.
 
-## OBJECTIF
+## Goals
 
-Concevoir et écrire un programme s'exécutant sur une JVM et implémentant la spécification
-ci-dessus et passant le test ci-après
+Write a program that load a file and output the final position of the mower.
 
-## TEST
-Le fichier suivant est fourni en entrée :
+## Test
+
+This is an example of a file to test it:
 
 ```
 5 5
@@ -58,12 +58,17 @@ GAGAGAGAA
 3 3 E
 AADAADADDA
 ```
-On attend le résultat suivant (position finale des tondeuses) :
+We expect to have this result:
 
 ```
 1 3 N
 5 1 E
 ```
 
-> NB: Les données en entrée peuvent être injectée sous une autre forme qu'un fichier (par
-exemple un test automatisé).
+## Author
+
+Damien Carol
+
+## License
+
+Apache License 2.0 http://www.apache.org/licenses/
